@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo & Gaby</title>
+    <style>
+        /* Estilos para centralizar o conteúdo e torná-lo agradável */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/564x/7a/2b/21/7a2b218ae5a00d6011425a91e43ac9f0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Estilo do título */
+        h1 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 3em;
+            color: #b03060;
+            margin-top: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* Estilo do carrossel */
+        .carousel {
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+            padding: 10px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            display: none;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        /* Estilo do contador */
+        #contador {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #b03060;
+            margin-top: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+        }
+
+        /* Estilo do poema */
+        .poema {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.5em;
+            color: #b03060;
+            margin-top: 20px;
+            text-align: center;
+            white-space: pre-line;
+            max-width: 500px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Rodrigo & Gaby</h1>
+
+    <!-- Carrossel de fotos -->
+    <div class="carousel">
+        <img src="https://i.ibb.co/bLrX8sk/20240713-232101.jpg" alt="Foto 1" class="active">
+        <img src="https://i.ibb.co/d6yBg9J/20240706-212532.jpg" alt="Foto 2">
+        <img src="https://i.ibb.co/3r4hCdm/20240728-102912.jpg" alt="Foto 3">
+        <img src="https://i.ibb.co/WKWyWmv/20240929-213644.jpg" alt="Foto 4">
+        <img src="https://i.ibb.co/G9CccsX/IMG-20240121-150442-607.jpg" alt="Foto 5">
+    </div>
+
+    <!-- Poema -->
+    <div class="poema">
+        À minha eterna namorada
+
+        Lembro cada momento
+        Único e verdadeiro
+        Com você a meu lado
+        Iremos ser muito felizes
+        Amando-nos por inteiro.
+
+        Hoje, ontem e amanhã.
+        Estaremos sempre juntos
+        Lembrando o que passou
+        Esperança é o que restou
+        Na vida intensa vivida
+        Amaremos por toda vida.
+
+        Antonio Bezerra
+    </div>
+
+    <!-- Contador de tempo -->
+    <div id="contador"></div>
+
+    <script>
+        // Carrossel de fotos
+        let currentPhoto = 0;
+        const photos = document.querySelectorAll('.carousel img');
+        const totalPhotos = photos.length;
+
+        function showNextPhoto() {
+            photos[currentPhoto].style.display = 'none';
+            currentPhoto = (currentPhoto + 1) % totalPhotos;
+            photos[currentPhoto].style.display = 'block';
+        }
+
+        photos[currentPhoto].style.display = 'block';
+        setInterval(showNextPhoto, 2000);
+
+        // Contador de tempo
+        const startDate = new Date("2024-01-18T00:00:00");
+
+        function updateCounter() {
+            const now = new Date();
+            let diff = now - startDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            diff %= 1000 * 60 * 60 * 24 * 365;
+
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+            diff %= 1000 * 60 * 60 * 24 * 30;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff %= 1000 * 60 * 60 * 24;
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff %= 1000 * 60 * 60;
+
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff %= 1000 * 60;
+
+            const seconds = Math.floor(diff / 1000);
+
+            document.getElementById('contador').textContent = 
+                `Estamos juntos há ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
